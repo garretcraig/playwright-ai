@@ -1,0 +1,25 @@
+{
+  "name": "playwright-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garretcraig/playwright-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/garretcraig/playwright-ai/issues"
+  },
+  "homepage": "https://github.com/garretcraig/playwright-ai#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.98.0",
+    "playwright": "^1.60.0"
+  }
+}
