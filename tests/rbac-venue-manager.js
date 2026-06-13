@@ -3,8 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 // RBAC Test: Venue Manager (FS-253)
-// Should have: Pricing, Promotions, Venue Settings, Bay Management
-// Should NOT have: Billing, Organization settings
+// Should have: Dashboard, Bays, Players, Waivers, Settings
+// Settings tabs: Account, Organization, Venue, Integrations, Bookings (all visible, some read-only)
+// Should NOT have: Billing
 
 (async () => {
   const browser = await chromium.launch({ headless: false });
@@ -45,13 +46,13 @@ const path = require('path');
     if (billingVisible) throw new Error('Billing tab should be hidden for Venue Manager but it is visible');
     console.log('✓ Billing tab correctly hidden for Venue Manager');
 
-    // Venue Manager should see venue-level settings tabs
-    const expectedTabs = ['Account', 'Venue', 'Bookings'];
+    // Venue Manager should see all settings tabs (some read-only, verified manually 2026-06-12)
+    const expectedTabs = ['Account', 'Organization', 'Venue', 'Integrations', 'Bookings'];
     for (const tab of expectedTabs) {
       const visible = await page.getByRole('tab', { name: tab }).isVisible();
       if (!visible) throw new Error(`Expected settings tab "${tab}" to be visible for Venue Manager`);
     }
-    console.log('✓ Venue-level Settings tabs visible');
+    console.log('✓ Settings tabs visible: Account, Organization, Venue, Integrations, Bookings');
 
     console.log('\n✓ PASS: Venue Manager role permissions verified (FS-253)');
     await browser.close();
